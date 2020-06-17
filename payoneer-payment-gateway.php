@@ -70,24 +70,24 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
 	 			$this->form_fields = array(
 					'enabled' => array(
-						'title'       => 'Enable/Disable',
-						'label'       => 'Enable Payoneer Gateway',
+						'title'       => esc_html__( 'Enable/Disable', "themebing" ),
+						'label'       => esc_html__( 'Enable Payoneer Gateway', "themebing" ),
 						'type'        => 'checkbox',
 						'description' => '',
 						'default'     => 'no'
 					),
 					'title' => array(
-						'title'       => 'Title',
+						'title'       => esc_html__( 'Title', "themebing" ),
 						'type'        => 'text',
-						'description' => 'This controls the title which the user sees during checkout.',
-						'default'     => 'Payoneer',
+						'description' => esc_html__( 'This controls the title which the user sees during checkout.', "themebing" ),
+						'default'     => esc_html__( 'Payoneer', "themebing" ),
 						'desc_tip'    => true,
 					),
 					'description' => array(
-						'title'       => 'Description',
+						'title'       => esc_html__( 'Description', "themebing" ),
 						'type'        => 'textarea',
-						'description' => 'This controls the description which the user sees during checkout.',
-						'default'     => 'Please complete your payoneer payment at first, then fill up the form below.',
+						'description' => esc_html__( 'This controls the description which the user sees during checkout.', "themebing" ),
+						'default'     => esc_html__( 'Please make a <a href="https://myaccount.payoneer.com/MainPage/Widget.aspx?w=MakeAPayment#/pay/makeapayment" target="_blank">payment</a> first, then fill up the form below.',, "themebing" )
 					),
 					'order_status' => array(
 	                    'title'       => esc_html__( 'Order Status', "themebing" ),
@@ -114,8 +114,18 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
 				// ok, let's display some description before the payment form
 				if ( $this->description ) {
-					echo wpautop( wptexturize( esc_html__( $this->description, "themebing" ) ) );
-					echo wpautop( wptexturize( "Payoneer Email: ". $this->payoneer_email ) ); 
+					echo wpautop( wptexturize( wp_kses( $this->description, array(
+						'a' => array(
+							'class' => array(),
+							'href'  => array(),
+							'rel'   => array(),
+							'title' => array(),
+							'target'=> array('_blank'),
+						))
+					)));
+				}
+				if ( $this->payoneer_email ) {
+					echo wpautop( wptexturize( "Recipient payoneer account: ". $this->payoneer_email ) ); 
 				} ?>
 				
 				<table border="0">
