@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Payoneer Payment Gateway
+ * Plugin Name: Payoneer Payment Gateway For WooCommerce
  * Plugin URI: https://github.com/ThemeBing/payoneer-payment-gateway
  * Description: Take payoneer payments on your store.
  * Author: ThemeBing
