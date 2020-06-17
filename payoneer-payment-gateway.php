@@ -87,7 +87,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 						'title'       => esc_html__( 'Description', "themebing" ),
 						'type'        => 'textarea',
 						'description' => esc_html__( 'This controls the description which the user sees during checkout.', "themebing" ),
-						'default'     => esc_html__( 'Please make a <a href="https://myaccount.payoneer.com/MainPage/Widget.aspx?w=MakeAPayment#/pay/makeapayment" target="_blank">payment</a> first, then fill up the form below.',, "themebing" )
+						'default'     => esc_html__( 'Please make a <a href="https://myaccount.payoneer.com/MainPage/Widget.aspx?w=MakeAPayment#/pay/makeapayment" target="_blank">payment</a> first, then fill up the form below.', "themebing" )
 					),
 					'order_status' => array(
 	                    'title'       => esc_html__( 'Order Status', "themebing" ),
