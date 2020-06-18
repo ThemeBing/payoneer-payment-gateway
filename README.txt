@@ -1,4 +1,4 @@
-=== Payoneer Payment Gateway ===
+=== Payment Gateway Payoneer For WooCommerce ===
 Contributors: themebing
 Donate link: https://themebing.com/donate
 Tags: Payoneer, Payment Gateway, WooCommerce Gateway, WooCommerce Payment
