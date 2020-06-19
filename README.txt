@@ -1,7 +1,7 @@
 === Payment Gateway Payoneer For WooCommerce ===
 Contributors: themebing
 Donate link: https://themebing.com/donate
-Tags: Payoneer, Payment Gateway, WooCommerce Gateway, WooCommerce Payment
+Tags: Payoneer, Payoneer Payment Gateway, Payment Gateway, WooCommerce Gateway, WooCommerce Payment
 Requires at least: 4.6
 Tested up to: 5.4.2
 Stable tag: 4.3
