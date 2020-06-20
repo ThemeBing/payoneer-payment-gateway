@@ -16,6 +16,8 @@ This is Payoneer Payment Gateway plugin for WooCommerce.
 This is Payoneer Payment Gateway plugin for WooCommerce. the officially payoneer is not a payment geteway it self. but sometime we need to have accept payment from payoneer users. so this is just a alternative way to accept payment. the main concept of this plugin is transfer money to another payoneer recipient account through email. after transfering money to your mentioned email. your customers will enter payoneer email address and Transaction ID to verify them manually. while the order will be hold. when you have completed verification. you should set order as "completed"
 That's it.
 
+<iframe src="https://www.youtube.com/embed/z8qRzBE-nVo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 == Installation ==
 
 1. Unpack the entire contents of this plugin zip file into your wp-content/plugins/ folder locally
@@ -32,8 +34,9 @@ OR you can just install it with WordPress by going to Plugins > Add New > and ty
 Yes this plugin are compatible with any wordpress site
 
 == Screenshots ==
-
-1. Sample of Adsense applied
+1. Set your payoneer email
+2. Available Payment
+3. Customer will fill these form
 
 == Upgrade Notice ==
 
