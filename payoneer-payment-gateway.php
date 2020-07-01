@@ -5,7 +5,7 @@
  * Description: Take payoneer payments on your store.
  * Author: ThemeBing
  * Author URI: http://themebing.com
- * Version: 1.0.0
+ * Version: 1.0.1
  *
 
 /**
@@ -87,7 +87,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 						'title'       => esc_html__( 'Description', "themebing" ),
 						'type'        => 'textarea',
 						'description' => esc_html__( 'This controls the description which the user sees during checkout.', "themebing" ),
-						'default'     => esc_html__( 'Please make a <a href="https://myaccount.payoneer.com/MainPage/Widget.aspx?w=MakeAPayment#/pay/makeapayment" target="_blank">payment</a> first, then fill up the form below.', "themebing" )
+						'default'     => esc_html__( 'Please make a' , "themebing" ).'<a href="https://myaccount.payoneer.com/MainPage/Widget.aspx?w=MakeAPayment#/pay/makeapayment" target="_blank">'.esc_html__( 'payment' , "themebing" ).'</a>'. esc_html__( 'first, then fill up the form below.', "themebing" )
 					),
 					'order_status' => array(
 	                    'title'       => esc_html__( 'Order Status', "themebing" ),
@@ -110,34 +110,30 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 			/**
 			 * You will need it if you want your custom credit card form
 			 */
-			public function payment_fields() { 
+			public function payment_fields() {  ?>
+				<div class="payment-method-payoneer">
+					<?php
+					// ok, let's display some description before the payment form
+					if ( $this->description ) {
+						echo wpautop( wptexturize( wp_kses( $this->description, array(
+							'a' => array(
+								'class' => array(),
+								'href'  => array(),
+								'rel'   => array(),
+								'title' => array(),
+								'target'=> array('_blank'),
+							))
+						)));
+					}
+					if ( $this->payoneer_email ) {
+						echo wpautop( wptexturize( "Recipient payoneer account: ". $this->payoneer_email ) ); 
+					} ?>
+					
+			    	<input class="widefat" type="email" name="payoneer_email" id="payoneer_email" placeholder="Payoneer email">
+			
+			    	<input class="widefat" type="text" name="payoneer_transaction_id" id="payoneer_transaction_id" placeholder="Transaction ID">
 
-				// ok, let's display some description before the payment form
-				if ( $this->description ) {
-					echo wpautop( wptexturize( wp_kses( $this->description, array(
-						'a' => array(
-							'class' => array(),
-							'href'  => array(),
-							'rel'   => array(),
-							'title' => array(),
-							'target'=> array('_blank'),
-						))
-					)));
-				}
-				if ( $this->payoneer_email ) {
-					echo wpautop( wptexturize( "Recipient payoneer account: ". $this->payoneer_email ) ); 
-				} ?>
-				
-				<table border="0">
-				  <tr>
-				    <td><label for="payoneer_email"><?php esc_html_e( 'Payoneer email', "themebing" );?></label></td>
-				    <td><input class="widefat" type="email" name="payoneer_email" id="payoneer_email" placeholder="example@mail.com"></td>
-				  </tr>
-				  <tr>
-				    <td><label for="payoneer_transaction_id"><?php esc_html_e( 'Transaction ID', "themebing" );?></label></td>
-				    <td><input class="widefat" type="text" name="payoneer_transaction_id" id="payoneer_transaction_id" placeholder="468720023"></td>
-				  </tr>
-				</table>
+				</div>
 	 
 			<?php }
 
@@ -344,6 +340,13 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
     add_action( 'manage_shop_order_posts_custom_column', 'payoneer_order_posts_custom_column', 2 );
 
+    // Enqueue script
+	function payoneer_plugin_enqueue_script() {
+		// CSS
+		wp_enqueue_style('payoneer-plugn', plugin_dir_url( __FILE__ ) . 'assets/css/payoneer-payment-gateway.css');
+	}
+	add_action('wp_enqueue_scripts', 'payoneer_plugin_enqueue_script');
+
 } else {
 
     /**
@@ -361,10 +364,10 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
     /**
      * Deactivate Plugin
      */
-    add_action( 'admin_init', 'payoneer_deactivate' );
     function payoneer_deactivate() {
         deactivate_plugins( plugin_basename( __FILE__ ) );
         unset( $_GET['activate'] );
     }
+    add_action( 'admin_init', 'payoneer_deactivate' );
 }
 
