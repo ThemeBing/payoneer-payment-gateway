@@ -46,3 +46,9 @@ Safe to upgrade
 
 = 1.0.0 – June 17, 2020 =
 * Initial release
+
+= 1.0.1 – July 17, 2020 =
+* Payment form style improved
+
+= 1.0.2 – August 02, 2020 =
+* Removed unnecessary code
