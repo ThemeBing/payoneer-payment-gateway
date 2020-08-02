@@ -5,7 +5,7 @@
  * Description: Take payoneer payments on your store.
  * Author: ThemeBing
  * Author URI: http://themebing.com
- * Version: 1.0.1
+ * Version: 1.0.2
  *
 
 /**
@@ -146,8 +146,8 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 	            $order = new WC_Order( $order_id );
 
 	            $status = 'wc-' === substr( $this->order_status, 0, 3 ) ? substr( $this->order_status, 3 ) : $this->order_status;
-	            // Mark as on-hold (we're awaiting the bKash)
-	            $order->update_status( $status, esc_html__( 'Checkout with bKash payment. ', "themebing" ) );
+	            // Mark as on-hold (we're awaiting the Payoneer)
+	            $order->update_status( $status, esc_html__( 'Checkout with payoneer payment. ', "themebing" ) );
 
 	            // Reduce stock levels
 	            $order->reduce_order_stock();
@@ -212,7 +212,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
 
  	/**
-     * Update bKash field to database
+     * Update Payoneer field to database
      */
     function payoneer_additional_field_update( $order_id ){
 
@@ -235,7 +235,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
 
     /**
-     * Admin order page bKash data output
+     * Admin order page Payoneer data output
      */
     function payoneer_admin_order_data( $order ){
 
@@ -270,7 +270,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
 
     /**
-     * Order review page bKash data output
+     * Order review page Payoneer data output
      */
     function payoneer_order_details( $order ){
 
