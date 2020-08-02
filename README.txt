@@ -52,3 +52,4 @@ Safe to upgrade
 
 = 1.0.2 – August 02, 2020 =
 * Removed unnecessary code
+* 5.5 Compatibility
