@@ -45,17 +45,19 @@ class ThemeBing_Install_Themes {
 	 * @since 1.0.0
 	 */
 	public function create_admin_theme_page() {
-		$data = wp_remote_retrieve_body( wp_remote_get( 'https://raw.githubusercontent.com/ThemeBing/theme-demos/main/data.json' )); ?>
+		$data = wp_remote_retrieve_body( wp_remote_get( 'https://raw.githubusercontent.com/ThemeBing/theme-demos/main/data.json' ));
+		$themes = json_decode( $data , true ); ?>
 
 		<div class="themes-showcase wrap">
 
 			<h2 class="wp-heading-inline"><?php esc_attr_e('Themes from ThemeBing', 'woovina-sites'); ?></h2>
+			<?php
+			$show = false;
+			if ($show): ?>
 			<div class="theme-filter">
 				<ul class="theme-filter-links">
 					<li class="current"><a href="#">All</a></li>
 					<?php 
-
-					$themes = json_decode( $data , true );
 					if ($themes) {
 						foreach ($themes['categories'] as $key => $category) { ?>
 							<li><a href="#" data-cat="<?php echo esc_attr( strtolower($category) ) ?>"><?php echo esc_html( $category ) ?></a></li>
@@ -67,6 +69,8 @@ class ThemeBing_Install_Themes {
 					<input type="text" class="themebing-search-input" name="themebing-search" value="" placeholder="<?php esc_html_e('Search themes...', 'themebing'); ?>">
 				</div>
 			</div>
+			<?php endif ?>
+			
 			<div class="theme-browser rendered">
 
 				<div class="themes wp-clearfix">

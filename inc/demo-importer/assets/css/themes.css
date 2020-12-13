@@ -46,3 +46,6 @@
 .themes-showcase .theme-browser .theme .theme-screenshot {
     height: 200px;
 }
+.themes-showcase .wp-heading-inline {
+    margin-bottom: 20px!important;
+}
