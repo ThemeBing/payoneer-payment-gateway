@@ -31,8 +31,8 @@ class ThemeBing_Install_Themes {
 	 */
 	public function add_page() {
 		add_menu_page(
-			esc_html__('ThemeBing Themes', 'tb-themes'),
-			esc_html__('TB Themes', 'tb-themes'),
+			esc_html__('ThemeBing Themes', 'themebing'),
+			esc_html__('TB Themes', 'themebing'),
 			'manage_options',
 			'themebing-themes',
 			array($this, 'create_admin_theme_page')
@@ -45,9 +45,7 @@ class ThemeBing_Install_Themes {
 	 * @since 1.0.0
 	 */
 	public function create_admin_theme_page() {
-		
-		 
-		 ?>
+		$data = wp_remote_retrieve_body( wp_remote_get( 'https://raw.githubusercontent.com/ThemeBing/theme-demos/main/data.json' )); ?>
 
 		<div class="themes-showcase wrap">
 
@@ -55,18 +53,18 @@ class ThemeBing_Install_Themes {
 			<div class="theme-filter">
 				<ul class="theme-filter-links">
 					<li class="current"><a href="#">All</a></li>
+					<?php 
 
-				<?php $data = wp_remote_retrieve_body( wp_remote_get( 'https://raw.githubusercontent.com/ThemeBing/theme-demos/main/data.json' ));
-
-				$themes = json_decode( $data , true );
-				if ($themes) {
-					foreach ($themes['categories'] as $key => $category) { ?>
-						<li><a href="#" data-cat="<?php echo esc_attr( strtolower($category) ) ?>"><?php echo esc_html( $category ) ?></a></li>
-					<?php }
-				} ?>
+					$themes = json_decode( $data , true );
+					if ($themes) {
+						foreach ($themes['categories'] as $key => $category) { ?>
+							<li><a href="#" data-cat="<?php echo esc_attr( strtolower($category) ) ?>"><?php echo esc_html( $category ) ?></a></li>
+						<?php }
+					} 
+					?>
 				</ul>
 				<div class="themebing-search">
-					<input type="text" class="themebing-search-input" name="themebing-search" value="" placeholder="<?php esc_html_e('Search themes...', 'tb-themes'); ?>">
+					<input type="text" class="themebing-search-input" name="themebing-search" value="" placeholder="<?php esc_html_e('Search themes...', 'themebing'); ?>">
 				</div>
 			</div>
 			<div class="theme-browser rendered">
@@ -84,8 +82,8 @@ class ThemeBing_Install_Themes {
 							<div class="theme-id-container">
 								<h3 class="theme-name"><?php echo esc_html( $theme["name"] ) ?></h3>
 								<div class="theme-actions">
-									<a href="<?php echo esc_url( $theme["buy"] ) ?>" target="_blank" class="button button-primary theme-install" data-name="Twenty Twenty-One" data-slug="twentytwentyone" aria-label="Install Twenty Twenty-One">Install</a>
-									<a href="<?php echo esc_url( $theme["preview_url"] ) ?>" target="_blank" class="button preview install-theme-preview">Preview</a>
+									<a href="<?php echo esc_url( $theme["buy"] ) ?>" target="_blank" class="button button-primary theme-install" data-name="Twenty Twenty-One" data-slug="twentytwentyone" aria-label="Install Twenty Twenty-One"><?php echo esc_html__( 'Install','themebing' ) ?></a>
+									<a href="<?php echo esc_url( $theme["preview_url"] ) ?>" target="_blank" class="button preview install-theme-preview"><?php echo esc_html__( 'Preview','themebing' ) ?></a>
 								</div>
 							</div>
 						</div>
