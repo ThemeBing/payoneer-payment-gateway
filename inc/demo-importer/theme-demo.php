@@ -54,6 +54,16 @@ class ThemeBing_Install_Themes {
 			<h2 class="wp-heading-inline"><?php esc_attr_e('Themes from ThemeBing', 'woovina-sites'); ?></h2>
 			<ul class="theme-filter-links">
 			
+
+			<?php $data = wp_remote_retrieve_body( wp_remote_get( 'https://raw.githubusercontent.com/ThemeBing/theme-demos/main/data.json' ));
+
+			$themes = json_decode( $data , true );
+			if ($themes) {
+				foreach ($themes as $key => $theme) {
+					var_dump($theme);
+				}
+			}
+			 ?>
 				<li><a href="#">All</a></li>
 				<li><a href="#">All</a></li>
 				<li><a href="#">All</a></li>
@@ -69,21 +79,25 @@ class ThemeBing_Install_Themes {
 			<div class="theme-browser rendered">
 
 				<div class="themes wp-clearfix">
-
-					<div class="theme" tabindex="0" aria-describedby="twentytwentyone-action twentytwentyone-name" data-slug="twentytwentyone">
-						<div class="theme-screenshot">
-							<img src="//ts.w.org/wp-content/themes/twentytwentyone/screenshot.png?ver=1.0" alt="">
-						</div>
-						<span class="more-details">Details &amp; Preview</span>
-						<div class="theme-author">By WordPress.org</div>
-						<div class="theme-id-container">
-							<h3 class="theme-name">Twenty Twenty-One</h3>
-							<div class="theme-actions">
-								<a class="button button-primary theme-install" data-name="Twenty Twenty-One" data-slug="twentytwentyone" href="http://localhost/test/wp-admin/update.php?action=install-theme&amp;theme=twentytwentyone&amp;_wpnonce=5e15b5ca11" aria-label="Install Twenty Twenty-One">Install</a>
-								<button class="button preview install-theme-preview">Preview</button>
+					<?php 
+					if ($themes) {
+						foreach ($themes as $key => $theme) { ?>
+						<div class="theme" tabindex="0" aria-describedby="twentytwentyone-action twentytwentyone-name" data-slug="twentytwentyone">
+							<div class="theme-screenshot">
+								<img src="<?php echo esc_url( $theme["image"] ) ?>" alt="<?php echo esc_attr( $theme["name"] ) ?>">
+							</div>
+							
+							<div class="theme-author">By WordPress.org</div>
+							<div class="theme-id-container">
+								<h3 class="theme-name"><?php echo esc_html( $theme["name"] ) ?></h3>
+								<div class="theme-actions">
+									<a href="<?php echo esc_url( $theme["buy"] ) ?>" target="_blank" class="button button-primary theme-install" data-name="Twenty Twenty-One" data-slug="twentytwentyone" aria-label="Install Twenty Twenty-One">Install</a>
+									<a href="<?php echo esc_url( $theme["preview_url"] ) ?>" target="_blank" class="button preview install-theme-preview">Preview</a>
+								</div>
 							</div>
 						</div>
-					</div>
+					<?php }
+					} ?>
 
 				</div>
 
