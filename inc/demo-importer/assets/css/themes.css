@@ -1,4 +1,4 @@
-.theme-filter-links {
+.theme-filter {
     display: inline-block;
     position: relative;
     box-sizing: border-box;
@@ -10,6 +10,17 @@
     background: #fff;
     color: #555;
     font-size: 13px;
+}
+
+.theme-filter-links {
+    float: left;
+    margin: 0;
+}
+
+.themebing-search {
+    float: right;
+    margin: inherit;
+    margin-bottom: 0;
 }
 
 .theme-filter-links li {
@@ -26,8 +37,12 @@
     text-decoration: none;
 }
 
-.theme-filter-links li.current a{
+.theme-filter-links li.current a {
     box-shadow: none;
     border-bottom: 4px solid #666;
     color: #23282d;
+}
+
+.themes-showcase .theme-browser .theme .theme-screenshot {
+    height: 200px;
 }
