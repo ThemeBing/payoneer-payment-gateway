@@ -3,7 +3,7 @@ Contributors: themebing
 Donate link: https://themebing.com
 Tags: Payoneer, Payoneer Payment Gateway, Payment Gateway, WooCommerce Gateway, WooCommerce Payment
 Requires at least: 4.6
-Tested up to: 5.6
+Tested up to: 5.7
 Stable tag: 4.3
 Requires PHP: 6.0
 License: GPLv2 or later
@@ -15,6 +15,8 @@ This is Payoneer Payment Gateway plugin for WooCommerce.
 
 This is Payoneer Payment Gateway plugin for WooCommerce. the officially payoneer is not a payment geteway it self. but sometime we need to have accept payment from payoneer users. so this is just a alternative way to accept payment. the main concept of this plugin is transfer money to another payoneer recipient account through email. after transfering money to your mentioned email. your customers will enter payoneer email address and Transaction ID to verify them manually. while the order will be hold. when you have completed verification. you should set order as "completed"
 That's it.
+
+<a href="http://share.payoneer.com/nav/yJ9j14r2q2vP_qGHgeT1eGcNNEtddFBOUH_yz1O3xFj0-yalMnVI3k3IRkeuTorVrtyDExVqScMRSMEHUOJPpQ2">DON'T HAVE PAYONEER ACCOUNT?</a>
 
 <iframe src="https://www.youtube.com/embed/z8qRzBE-nVo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -53,3 +55,6 @@ Safe to upgrade
 = 1.0.2 – August 02, 2020 =
 * Removed unnecessary code
 * 5.5 Compatibility
+
+= 1.0.4 – March 05, 2021 =
+* 5.7 Compatibility
