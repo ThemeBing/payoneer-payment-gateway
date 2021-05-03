@@ -58,3 +58,7 @@ Safe to upgrade
 
 = 1.0.4 – March 05, 2021 =
 * 5.7 Compatibility
+
+= 1.0.5 – May 03, 2021 =
+* Style issue fixed
+* Payment icon restored
