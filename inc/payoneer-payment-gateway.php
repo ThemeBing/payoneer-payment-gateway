@@ -28,7 +28,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 	 		public function __construct() {
 	 
 				$this->id = 'payoneer'; // payment gateway plugin ID
-				$this->icon = plugin_dir_url( __FILE__ ) . 'assets/images/logo.png'; // URL of the icon that will be displayed on checkout page near your gateway name
+				$this->icon = plugin_dir_url( __DIR__ ) . 'assets/images/logo.png'; // URL of the icon that will be displayed on checkout page near your gateway name
 				$this->has_fields = true; // in case you need a custom credit card form
 				$this->method_title = 'Payoneer Gateway';
 				$this->method_description = 'Take payoneer payments on your store.'; // will be displayed on the options page
@@ -79,7 +79,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 						'title'       => esc_html__( 'Description', "themebing" ),
 						'type'        => 'textarea',
 						'description' => esc_html__( 'This controls the description which the user sees during checkout.', "themebing" ),
-						'default'     => esc_html__( 'Please make a' , "themebing" ).'<a href="https://myaccount.payoneer.com/MainPage/Widget.aspx?w=MakeAPayment#/pay/makeapayment" target="_blank">'.esc_html__( 'payment' , "themebing" ).'</a>'. esc_html__( 'first, then fill up the form below.', "themebing" )
+						'default'     => esc_html__( 'Please make a' , "themebing" ).' <a href="https://myaccount.payoneer.com/MainPage/Widget.aspx?w=MakeAPayment#/pay/makeapayment" target="_blank">'.esc_html__( 'payment' , "themebing" ).'</a> '. esc_html__( 'first, then fill up the form below.', "themebing" )
 					),
 					'order_status' => array(
 	                    'title'       => esc_html__( 'Order Status', "themebing" ),
@@ -240,7 +240,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
         ?>
         <div class="form-field form-field-wide">
-            <img src='<?php echo plugin_dir_url( __FILE__ ) . 'assets/images/logo.png'; ?>' alt="payoneer">
+            <img src='<?php echo plugin_dir_url( __DIR__ ) . 'assets/images/logo.png'; ?>' alt="payoneer">
             <table class="wp-list-table widefat fixed striped">
                 <tbody>
                     <tr>
@@ -335,7 +335,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
     // Enqueue script
 	function payoneer_plugin_enqueue_script() {
 		// CSS
-		wp_enqueue_style('payoneer-plugn', plugin_dir_url( __FILE__ ) . 'assets/css/payoneer-payment-gateway.css');
+		wp_enqueue_style('payoneer-plugn', plugin_dir_url( __DIR__ ) . 'assets/css/payoneer-payment-gateway.css');
 	}
 	add_action('wp_enqueue_scripts', 'payoneer_plugin_enqueue_script');
 
@@ -357,7 +357,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
      * Deactivate Plugin
      */
     function payoneer_deactivate() {
-        deactivate_plugins( plugin_basename( __FILE__ ) );
+        deactivate_plugins( plugin_basename( __DIR__ ) );
         unset( $_GET['activate'] );
     }
     add_action( 'admin_init', 'payoneer_deactivate' );
