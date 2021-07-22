@@ -3,7 +3,7 @@ Contributors: themebing
 Donate link: https://themebing.com
 Tags: Payoneer, Payoneer Payment Gateway, Payment Gateway, WooCommerce Gateway, WooCommerce Payment
 Requires at least: 4.6
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: 4.3
 Requires PHP: 6.0
 License: GPLv2 or later
