@@ -5,7 +5,7 @@
  * Description: Take payoneer payments on your store.
  * Author: ThemeBing
  * Author URI: http://themebing.com
- * Version: 1.0.9
+ * Version: 1.1.0
  *
  */
 
