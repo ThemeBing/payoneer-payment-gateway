@@ -235,8 +235,8 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
             return;
 
 
-        $email = (get_post_meta(esc_attr($_GET['post']), '_payoneer_email', true)) ? get_post_meta(esc_attr($_GET['post']), '_payoneer_email', true) : '';
-        $transaction = (get_post_meta(esc_attr($_GET['post']), '_payoneer_transaction_id', true)) ? get_post_meta(esc_attr($_GET['post']), '_payoneer_transaction_id', true) : '';
+        $email = (get_post_meta(sanitize_text_field($_GET['post']), '_payoneer_email', true)) ? get_post_meta(sanitize_text_field($_GET['post']), '_payoneer_email', true) : '';
+        $transaction = (get_post_meta(sanitize_text_field($_GET['post']), '_payoneer_transaction_id', true)) ? get_post_meta(sanitize_text_field($_GET['post']), '_payoneer_transaction_id', true) : '';
 
         ?>
         <div class="form-field form-field-wide">
