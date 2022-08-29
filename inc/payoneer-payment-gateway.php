@@ -62,37 +62,37 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
 	 			$this->form_fields = array(
 					'enabled' => array(
-						'title'       => esc_html__( 'Enable/Disable', "themebing" ),
-						'label'       => esc_html__( 'Enable Payoneer Gateway', "themebing" ),
+						'title'       => esc_html__( 'Enable/Disable', 'wc-payoneer-payment-gateway' ),
+						'label'       => esc_html__( 'Enable Payoneer Gateway', 'wc-payoneer-payment-gateway' ),
 						'type'        => 'checkbox',
 						'description' => '',
 						'default'     => 'no'
 					),
 					'title' => array(
-						'title'       => esc_html__( 'Title', "themebing" ),
+						'title'       => esc_html__( 'Title', 'wc-payoneer-payment-gateway' ),
 						'type'        => 'text',
-						'description' => esc_html__( 'This controls the title which the user sees during checkout.', "themebing" ),
-						'default'     => esc_html__( 'Payoneer', "themebing" ),
+						'description' => esc_html__( 'This controls the title which the user sees during checkout.', 'wc-payoneer-payment-gateway' ),
+						'default'     => esc_html__( 'Payoneer', 'wc-payoneer-payment-gateway' ),
 						'desc_tip'    => true,
 					),
 					'description' => array(
-						'title'       => esc_html__( 'Description', "themebing" ),
+						'title'       => esc_html__( 'Description', 'wc-payoneer-payment-gateway' ),
 						'type'        => 'textarea',
-						'description' => esc_html__( 'This controls the description which the user sees during checkout.', "themebing" ),
-						'default'     => esc_html__( 'Please make a' , "themebing" ).' <a href="https://myaccount.payoneer.com/MainPage/Widget.aspx?w=MakeAPayment#/pay/makeapayment" target="_blank">'.esc_html__( 'payment' , "themebing" ).'</a> '. esc_html__( 'first, then fill up the form below.', "themebing" )
+						'description' => esc_html__( 'This controls the description which the user sees during checkout.', 'wc-payoneer-payment-gateway' ),
+						'default'     => esc_html__( 'Please make a' , 'wc-payoneer-payment-gateway' ).' <a href="https://myaccount.payoneer.com/MainPage/Widget.aspx?w=MakeAPayment#/pay/makeapayment" target="_blank">'.esc_html__( 'payment' , 'wc-payoneer-payment-gateway' ).'</a> '. esc_html__( 'first, then fill up the form below.', 'wc-payoneer-payment-gateway' )
 					),
 					'order_status' => array(
-	                    'title'       => esc_html__( 'Order Status', "themebing" ),
+	                    'title'       => esc_html__( 'Order Status', 'wc-payoneer-payment-gateway' ),
 	                    'type'        => 'select',
 	                    'class'       => 'wc-enhanced-select',
-	                    'description' => esc_html__( 'Choose whether status you wish after checkout.', "themebing" ),
+	                    'description' => esc_html__( 'Choose whether status you wish after checkout.', 'wc-payoneer-payment-gateway' ),
 	                    'default'     => 'wc-on-hold',
 	                    'desc_tip'    => true,
 	                    'options'     => wc_get_order_statuses()
 	                ),
 	                'payoneer_email'  => array(
-	                    'title'       => esc_html__( 'Payoneer Email', "themebing" ),
-	                    'description' => esc_html__( 'Add your payoneer email address which will be shown in checkout page for receiving payments', "themebing" ),
+	                    'title'       => esc_html__( 'Payoneer Email', 'wc-payoneer-payment-gateway' ),
+	                    'description' => esc_html__( 'Add your payoneer email address which will be shown in checkout page for receiving payments', 'wc-payoneer-payment-gateway' ),
 	                    'type'        => 'text',
 	                    'desc_tip'    => true
 	                ),
@@ -139,7 +139,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
 	            $status = 'wc-' === substr( $this->order_status, 0, 3 ) ? substr( $this->order_status, 3 ) : $this->order_status;
 	            // Mark as on-hold (we're awaiting the Payoneer)
-	            $order->update_status( $status, esc_html__( 'Checkout with payoneer payment. ', "themebing" ) );
+	            $order->update_status( $status, esc_html__( 'Checkout with payoneer payment. ', 'wc-payoneer-payment-gateway' ) );
 
 	            // Reduce stock levels
 	            $order->reduce_order_stock();
@@ -173,14 +173,14 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
         $payoneer_email = sanitize_text_field( $_POST['payoneer_email'] );
 
         if( !isset($payoneer_email) || empty($payoneer_email) )
-            wc_add_notice( esc_html__( 'Please enter your payoneer email address', 'themebing'), 'error' );
+            wc_add_notice( esc_html__( 'Please enter your payoneer email address', 'wc-payoneer-payment-gateway'), 'error' );
 
 
 
         $payoneer_transaction_id = sanitize_text_field( $_POST['payoneer_transaction_id'] );
 
         if( !isset($payoneer_transaction_id) || empty($payoneer_transaction_id) )
-            wc_add_notice( esc_html__( 'Please enter your payoneer transaction ID', 'themebing' ), 'error' );
+            wc_add_notice( esc_html__( 'Please enter your payoneer transaction ID', 'wc-payoneer-payment-gateway' ), 'error' );
 
 
 
@@ -188,7 +188,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
         $validate_email = preg_match( '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/i',  $match_email );
 
         if( !empty($payoneer_email) && $validate_email == false )
-            wc_add_notice( esc_html__( 'Incorrect email address.', 'themebing'), 'error' );
+            wc_add_notice( esc_html__( 'Incorrect email address.', 'wc-payoneer-payment-gateway'), 'error' );
 
 
 
@@ -196,7 +196,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
         $validate_id = preg_match( '/^[0-9]*$/',  $match_id );
 
 		if( !empty($payoneer_transaction_id) && $validate_id == false )
-            wc_add_notice( esc_html__( 'Only number is acceptable', 'themebing'), 'error' );
+            wc_add_notice( esc_html__( 'Only number is acceptable', 'wc-payoneer-payment-gateway'), 'error' );
         
     }
 
@@ -235,8 +235,8 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
             return;
 
 
-        $email = (get_post_meta($_GET['post'], '_payoneer_email', true)) ? get_post_meta($_GET['post'], '_payoneer_email', true) : '';
-        $transaction = (get_post_meta($_GET['post'], '_payoneer_transaction_id', true)) ? get_post_meta($_GET['post'], '_payoneer_transaction_id', true) : '';
+        $email = (get_post_meta(esc_attr($_GET['post']), '_payoneer_email', true)) ? get_post_meta(esc_attr($_GET['post']), '_payoneer_email', true) : '';
+        $transaction = (get_post_meta(esc_attr($_GET['post']), '_payoneer_transaction_id', true)) ? get_post_meta(esc_attr($_GET['post']), '_payoneer_transaction_id', true) : '';
 
         ?>
         <div class="form-field form-field-wide">
@@ -244,11 +244,11 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
             <table class="wp-list-table widefat fixed striped">
                 <tbody>
                     <tr>
-                        <th><strong><?php esc_html_e('Payoneer Email :', 'themebing') ;?></strong></th>
+                        <th><strong><?php esc_html_e('Payoneer Email :', 'wc-payoneer-payment-gateway') ;?></strong></th>
                         <td><?php echo esc_attr( $email );?></td>
                     </tr>
                     <tr>
-                        <th><strong><?php esc_html_e('Transaction ID :', 'themebing') ;?></strong></th>
+                        <th><strong><?php esc_html_e('Transaction ID :', 'wc-payoneer-payment-gateway') ;?></strong></th>
                         <td><?php echo esc_attr( $transaction );?></td>
                     </tr>
                 </tbody>
@@ -280,11 +280,11 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
         ?>
         <table>
             <tr>
-                <th><?php esc_html_e('Payoneer Email:', 'themebing');?></th>
+                <th><?php esc_html_e('Payoneer Email:', 'wc-payoneer-payment-gateway');?></th>
                 <td><?php echo esc_attr( $email );?></td>
             </tr>
             <tr>
-                <th><?php esc_html_e('Transaction ID:', 'themebing');?></th>
+                <th><?php esc_html_e('Transaction ID:', 'wc-payoneer-payment-gateway');?></th>
                 <td><?php echo esc_attr( $transaction );?></td>
             </tr>
         </table>
@@ -301,8 +301,8 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
 
         $new_columns = (is_array($columns)) ? $columns : array();
         unset( $new_columns['order_actions'] );
-        $new_columns['column_email_address']     = esc_html__('Payoneer Email:', 'themebing');
-        $new_columns['column_transaction_id']     = esc_html__('Transaction ID:', 'themebing');
+        $new_columns['column_email_address']     = esc_html__('Payoneer Email:', 'wc-payoneer-payment-gateway');
+        $new_columns['column_transaction_id']     = esc_html__('Transaction ID:', 'wc-payoneer-payment-gateway');
 
         $new_columns['order_actions'] = $columns['order_actions'];
         return $new_columns;
@@ -348,7 +348,7 @@ if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', ge
     function payoneer_admin_notice__error() {
         ?>
         <div class="notice notice-error">
-            <p><a href="http://wordpress.org/extend/plugins/woocommerce/"><?php esc_html_e( 'Woocommerce', 'themebing' ); ?></a> <?php esc_html_e( 'plugin required to actived if you want to install this plugin.', 'themebing' ); ?></p>
+            <p><a href="http://wordpress.org/extend/plugins/woocommerce/"><?php esc_html_e( 'Woocommerce', 'wc-payoneer-payment-gateway' ); ?></a> <?php esc_html_e( 'plugin required to actived if you want to install this plugin.', 'wc-payoneer-payment-gateway' ); ?></p>
         </div>
         <?php
     }

@@ -31,8 +31,8 @@ class ThemeBing_Install_Themes {
 	 */
 	public function add_page() {
 		add_menu_page(
-			esc_html__('ThemeBing Themes', 'themebing'),
-			esc_html__('TB Themes', 'themebing'),
+			esc_html__('ThemeBing Themes', 'wc-payoneer-payment-gateway'),
+			esc_html__('TB Themes', 'wc-payoneer-payment-gateway'),
 			'manage_options',
 			'themebing-themes',
 			array($this, 'create_admin_theme_page')
@@ -45,18 +45,21 @@ class ThemeBing_Install_Themes {
 	 * @since 1.0.0
 	 */
 	public function create_admin_theme_page() {
-		$data = wp_remote_retrieve_body( wp_remote_get( 'https://raw.githubusercontent.com/ThemeBing/theme-demos/main/data.json' ));
-		$themes = json_decode( $data , true ); ?>
+
+
+		$data = wp_remote_retrieve_body( wp_remote_get( plugin_dir_url( __FILE__ ) . 'data.json' ));
+		
+		$themes = json_decode( $data , true );?>
 
 		<div class="themes-showcase wrap">
 
-			<h2 class="wp-heading-inline"><?php esc_attr_e('Themes from ThemeBing', 'woovina-sites'); ?></h2>
+			<h2 class="wp-heading-inline"><?php esc_attr_e('Themes from ThemeBing', 'wc-payoneer-payment-gateway'); ?></h2>
 			<?php
 			$show = false;
 			if ($show): ?>
 			<div class="theme-filter">
 				<ul class="theme-filter-links">
-					<li class="current"><a href="#">All</a></li>
+					<li class="current"><a href="#"><?php echo esc_html__( 'All','wc-payoneer-payment-gateway' ) ?></a></li>
 					<?php 
 					if ($themes) {
 						foreach ($themes['categories'] as $key => $category) { ?>
@@ -66,7 +69,7 @@ class ThemeBing_Install_Themes {
 					?>
 				</ul>
 				<div class="themebing-search">
-					<input type="text" class="themebing-search-input" name="themebing-search" value="" placeholder="<?php esc_html_e('Search themes...', 'themebing'); ?>">
+					<input type="text" class="themebing-search-input" name="themebing-search" value="" placeholder="<?php esc_html_e('Search themes...', 'wc-payoneer-payment-gateway'); ?>">
 				</div>
 			</div>
 			<?php endif ?>
@@ -82,12 +85,11 @@ class ThemeBing_Install_Themes {
 								<img src="<?php echo esc_url( $theme["image"] ) ?>" alt="<?php echo esc_attr( $theme["name"] ) ?>">
 							</div>
 							<span class="more-details"><?php echo esc_html( $theme["name"] ) ?></span>
-							<div class="theme-author">By WordPress.org</div>
 							<div class="theme-id-container">
 								<h3 class="theme-name"><?php echo esc_html( $theme["name"] ) ?></h3>
 								<div class="theme-actions">
-									<a href="<?php echo esc_url( $theme["buy"] ) ?>" target="_blank" class="button button-primary theme-install" data-name="Twenty Twenty-One" data-slug="twentytwentyone" aria-label="Install Twenty Twenty-One"><?php echo esc_html__( 'Install','themebing' ) ?></a>
-									<a href="<?php echo esc_url( $theme["preview_url"] ) ?>" target="_blank" class="button preview install-theme-preview"><?php echo esc_html__( 'Preview','themebing' ) ?></a>
+									<a href="<?php echo esc_url( $theme["buy"] ) ?>" target="_blank" class="button button-primary theme-install" data-name="Twenty Twenty-One" data-slug="twentytwentyone" aria-label="Install Twenty Twenty-One"><?php echo esc_html__( 'Install','wc-payoneer-payment-gateway' ) ?></a>
+									<a href="<?php echo esc_url( $theme["preview_url"] ) ?>" target="_blank" class="button preview install-theme-preview"><?php echo esc_html__( 'Preview','wc-payoneer-payment-gateway' ) ?></a>
 								</div>
 							</div>
 						</div>
